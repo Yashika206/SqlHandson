@@ -1,0 +1,327 @@
+yashika01@ubuntu:~$ sudo bash
+[sudo] password for yashika01:
+root@ubuntu:~# service mysql start
+root@ubuntu:~# mysql
+Welcome to the MySQL monitor. Commands end with ; or \g.
+Your MySQL connection id is 5
+Server version: 5.7.31-0ubuntu0.18.04.1 (Ubuntu)
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+mysql> create database supplier;Query OK, 1 row affected (0.00 sec)
+mysql> use supplier;
+Database changed
+mysql> create table branch(branch_name varchar(30),branch_city varchar(20), assets
+int);
+Query OK, 0 rows affected (0.00 sec)
+mysql> describe branch;
++-------------+-------------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| branch_name | varchar(30) | YES | | NULL | |
+| branch_city | varchar(20) | YES | | NULL | |
+| assets | int(11) | YES | | NULL | |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+mysql> insert into branch values("SBI Nandanvan","Nagpur",10000);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into branch values("ICCI Hinjewadi","Pune",12000);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into branch values("BOI Panvel","Mumbai",9000);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into branch values("NUCC Mahal","Nagpur",15000);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into branch values("HDFC VT Road","Mumbai",15000);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into branch values("BOB Adarsh Nagar","Jaipur",7000);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into branch values("BOM Katraj","Pune",20000);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into branch values("PNB Sardar Road","Jalandhar",20000);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into branch values("BOI Central Avenue Road","Banglore",17000);
+
+Query OK, 1 row affected (0.00 sec)
+mysql> select * from branch;
++-------------------------+-------------+--------+
+| branch_name | branch_city | assets |
++-------------------------+-------------+--------+
+| SBI Nandanvan | Nagpur | 10000 |
+| ICCI Hinjewadi | Pune | 12000 |
+| BOI Panvel | Mumbai | 9000 |
+| NUCC Mahal | Nagpur | 15000 |
+| HDFC VT Road | Mumbai | 15000 |
+| BOB Adarsh Nagar | Jaipur | 7000 |
+| BOM Katraj | Pune | 20000 |
+| PNB Sardar Road | Jalandhar | 20000 |
+| BOI Central Avenue Road | Banglore | 17000 |
++-------------------------+-------------+--------+
+9 rows in set (0.00 sec)
+mysql> create table customer(customer_name varchar(25) primary key, customer_street
+varchar(30),customer_city varchar(20));
+Query OK, 0 rows affected (0.01 sec)
+mysql> describe customer;
++-----------------+-------------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| customer_name | varchar(25) | NO | PRI | NULL | |
+| customer_street | varchar(30) | YES | | NULL | |
+| customer_city | varchar(20) | YES | | NULL | |
++-----------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+mysql> insert into customer values("Pari","Mahal",Nagpur);
+ERROR 1054 (42S22): Unknown column 'Nagpur' in 'field list'
+mysql> insert into customer values("Pari","Mahal","Nagpur");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into customer values("Sonal","VT Road","Mumbai");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into customer values("Seema","Sardar Road","Jalandhar");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into customer values("Pinky","Central Avenue Road","Banglore");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into customer values("Shreya","Katraj","Pune");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into customer values("Anuj","Nandanvan","Nagpur");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into customer values("Namrata","Panvel","Mumbai");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into customer values("Parth","Adarsh Nagar","Jaipur");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into customer values("Somesh","Hinjewadi","Pune");
+
+Query OK, 1 row affected (0.00 sec)
+mysql> select * from customer;
++---------------+---------------------+---------------+
+| customer_name | customer_street | customer_city |
++---------------+---------------------+---------------+
+| Pari | Mahal | Nagpur |
+| Namrata | Panvel | Mumbai |
+| Parth | Adarsh Nagar | Jaipur |
+| Sonal | VT Road | Mumbai |
+| Anuj | Nandanvan | Nagpur |
+| Seema | Sardar Road | Jalandhar |
+| Shreya | Katraj | Pune |
+| Somesh | Hinjewadi | Pune |
+| Pinky | Central Avenue Road | Banglore |
++---------------+---------------------+---------------+
+9 rows in set (0.00 sec)
+mysql> create table loan(loan_number varchar(15), branch_name varchar(30),amount
+int);
+Query OK, 0 rows affected (0.01 sec)
+mysql> describe loan;
++-------------+-------------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| loan_number | varchar(15) | YES | | NULL | |
+| branch_name | varchar(30) | YES | | NULL | |
+| amount | int(11) | YES | | NULL | |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+mysql> insert into loan values("L-12345","ICCI Hinjewadi","5000");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into loan values("L-52344","BOI Central Avenue Road",20000);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into loan values("L-27891","SBI Nandanvan",7000);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into loan values("L-59872","BOI Panvel",10000);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into loan values("L-69387","PNB Sardar Road",90000);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into loan values("L-45612","BOM Katraj",12000);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into loan values("L-56789","NUCC Mahal",6000);
+Query OK, 1 row affected (0.01 sec)
+mysql> insert into loan values("L-36954","BOB Adarsh Nagar",15000);
+Query OK, 1 row affected (0.00 sec)
+mysql> select * from loan;
++-------------+-------------------------+--------+
+| loan_number | branch_name | amount |
+
++-------------+-------------------------+--------+
+| L-12345 | ICCI Hinjewadi | 5000 |
+| L-27891 | SBI_Nandanvan | 7000 |
+| L-36954 | BOB Adarsh Nagar | 15000 |
+| L-45612 | BOM Katraj | 12000 |
+| L-52344 | BOI Central Avenue Road | 20000 |
+| L-56789 | NUCC Mahal | 6000 |
+| L-59872 | BOI Panvel | 10000 |
+| L-45612 | BOM Katraj | 12000 |
+| L-56789 | NUCC Mahal | 6000 |
+| L-69387 | PNB Sardar Road | 90000 |
++-------------+-------------------------+--------+
+9 rows in set (0.00 sec)
+mysql> create table borrower(customer_name varchar(25),loan_number varchar(15));
+Query OK, 0 rows affected (0.01 sec)
+mysql> alter table borrower add foreign key(customer_name) references
+customer(customer_name);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0 Duplicates: 0 Warnings: 0
+mysql> alter table loan add primary key(loan_number);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0 Duplicates: 0 Warnings: 0
+mysql> describe loan;
++-------------+-------------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| loan_number | varchar(15) | NO | PRI | NULL | |
+| branch_name | varchar(30) | YES | | NULL | |
+| amount | int(11) | YES | | NULL | |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+mysql> alter table borrower add foreign key(loan_number) references
+loan(loan_number);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0 Duplicates: 0 Warnings: 0
+mysql> describe borrower;
++---------------+-------------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| customer_name | varchar(25) | YES | MUL | NULL | |
+| loan_number | varchar(15) | YES | MUL | NULL | |
++---------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+mysql> insert into borrower values("Pari","L-56789");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into borrower values("Seema","L-69387");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into borrower values("Pinky","L-52344");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into borrower values("Parth","L-36954");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into borrower values("Somesh","L-12345");
+Query OK, 1 row affected (0.00 sec)
+mysql> select * from borrower;
++---------------+-------------+
+| customer_name | loan_number |
++---------------+-------------+
+| Pari | L-56789 |
+| Seema | L-69387 |
+| Pinky | L-52344 |
+| Parth | L-36954 |
+| Somesh | L-12345 |
++---------------+-------------+
+4 rows in set (0.00 sec)
+mysql>create view view_city as select * from customer where customer_city="Pune";
+Query OK, 0 rows affected (0.002 sec)
+mysql> select * from view_city;
++---------------+-----------------+---------------+
+| customer_name | customer_street | customer_city |
++---------------+-----------------+---------------+
+| Shreya | Katraj | Pune |
+| Somesh | Hinjewadi | Pune |
++---------------+-----------------+---------------+
+2 rows in set (0.001 sec)
+mysql> create view view_user as(select customer_name, branch_name,loan.loan_number
+from borrower,loan where borrower.loan_number=loan.loan_number);
+Query OK, 0 rows affected (0.002 sec)
+mysql> select * from view_user;
++---------------+-------------------------+-------------+
+| customer_name | branch_name | loan_number |
++---------------+-------------------------+-------------+
+| Pari | NUCC Mahal | L-56789 |
+| Seema | PNB Sardar Road | L-69387 |
+| Pinky | BOI Central Avenue Road | L-52344 |
+| Parth | BOB Adarsh Nagar | L-36954 |
+| Somesh | ICCI Hinjewadi | L-12345 |
++---------------+-------------------------+-------------+
+5 rows in set (0.001 sec)
+mysql> create index index_customer1 on customer(customer_name);
+Query OK, 0 rows affected (0.260 sec)
+Records: 0 Duplicates: 0 Warnings: 0
+mysql> show index from customer;
++----------+------------+-----------------+--------------+---------------
++-----------+-------------+----------+--------+------+------------+---------
++---------------+
+| Table | Non_unique | Key_name | Seq_in_index | Column_name |
+Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment |
+Index_comment |
++----------+------------+-----------------+--------------+---------------
++-----------+-------------+----------+--------+------+------------+---------
+
++---------------+
+| customer | 0 | PRIMARY | 1 | customer_name | A
+| 9 | NULL | NULL | | BTREE | | |
+| customer | 1 | index_customer1 | 1 | customer_name | A
+| 9 | NULL | NULL | | BTREE | | |
++----------+------------+-----------------+--------------+---------------
++-----------+-------------+----------+--------+------+------------+---------
++---------------+
+2 rows in set (0.000 sec)
+mysql> create index index_customer2 on customer(customer_city);
+Query OK, 0 rows affected (0.026 sec)
+Records: 0 Duplicates: 0 Warnings: 0
+mysql> show index from customer;
++----------+------------+-----------------+--------------+---------------
++-----------+-------------+----------+--------+------+------------+---------
++---------------+
+| Table | Non_unique | Key_name | Seq_in_index | Column_name |
+Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment |
+Index_comment |
++----------+------------+-----------------+--------------+---------------
++-----------+-------------+----------+--------+------+------------+---------
++---------------+
+| customer | 0 | PRIMARY | 1 | customer_name | A
+| 9 | NULL | NULL | | BTREE | | |
+| customer | 1 | index_customer1 | 1 | customer_name | A
+| 9 | NULL | NULL | | BTREE | | |
+| customer | 1 | index_customer2 | 1 | customer_city | A
+| 9 | NULL | NULL | YES | BTREE | | |
++----------+------------+-----------------+--------------+---------------
++-----------+-------------+----------+--------+------+------------+---------
++---------------+
+3 rows in set (0.000 sec)
+mysql> create index index_loan on loan(loan_number);
+Query OK, 0 rows affected (0.030 sec)
+Records: 0 Duplicates: 0 Warnings: 0
+mysql> show index from loan;
++-------+------------+------------+--------------+-------------+-----------
++-------------+----------+--------+------+------------+---------+---------------+
+| Table | Non_unique | Key_name | Seq_in_index | Column_name | Collation |
+Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++-------+------------+------------+--------------+-------------+-----------
++-------------+----------+--------+------+------------+---------+---------------+
+| loan | 0 | PRIMARY | 1 | loan_number | A |
+8 | NULL | NULL | | BTREE | | |
+| loan | 1 | index_loan | 1 | loan_number | A |
+8 | NULL | NULL | | BTREE | | |
++-------+------------+------------+--------------+-------------+-----------
++-------------+----------+--------+------+------------+---------+---------------+
+2 rows in set (0.000 sec)
+mysql> drop index index_customer1 on customer;
+Query OK, 0 rows affected (0.004 sec)
+Records: 0 Duplicates: 0 Warnings: 0
+mysql> show index from customer;
+
++----------+------------+-----------------+--------------+---------------
++-----------+-------------+----------+--------+------+------------+---------
++---------------+
+| Table | Non_unique | Key_name | Seq_in_index | Column_name |
+Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment |
+Index_comment |
++----------+------------+-----------------+--------------+---------------
++-----------+-------------+----------+--------+------+------------+---------
++---------------+
+| customer | 0 | PRIMARY | 1 | customer_name | A
+| 9 | NULL | NULL | | BTREE | | |
+| customer | 1 | index_customer2 | 1 | customer_city | A
+| 9 | NULL | NULL | YES | BTREE | | |
++----------+------------+-----------------+--------------+---------------
++-----------+-------------+----------+--------+------+------------+---------
++---------------+
+2 rows in set (0.000 sec)
+mysql>drop view view_city;
+Query OK, 0 rows affected (0.000 sec)
+mysql> show tables;
++--------------------+
+| Tables_in_supplier |
++--------------------+
+| borrower |
+| branch |
+| customer |
+| loan |
+| view_user |
++--------------------+
+5 rows in set (0.000 sec)
